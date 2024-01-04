@@ -4,8 +4,8 @@ import time
 def facial_recognition(frame):
     # Dictionary mapping reference images to their names
     reference_images = {
-        'jonathan.png': 'Jonathan',
-        'test.jpg': 'Test'
+        'images/jonathan.png': 'Jonathan',
+        'images/test.jpg': 'Test'
     }
 
     # Load the pre-trained Haar cascade classifier for face detection
@@ -59,7 +59,7 @@ def main():
 
         # Perform facial recognition on the captured frame
         success, message = facial_recognition(frame)
-        print(message)
+      
         # If a match is found, return immediately
         if success:
             # Release the camera
