@@ -1,0 +1,5 @@
+images/*
+__pycache__/*
+facial_recognition/__pycache__/*
+facial_recognition_app/__pycache__/*
+db.sqlite3
