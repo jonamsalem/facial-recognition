@@ -16,7 +16,6 @@ def facial_recognition(frame):
     faces = face_classifier.detectMultiScale(gray, 1.3, 5)
 
     if len(faces) == 0:
-        # No faces found
         return False, None
 
     for (x, y, w, h) in faces:
@@ -27,7 +26,6 @@ def facial_recognition(frame):
             # Load the reference image for comparison
             reference_image = cv2.imread(image_path)
 
-            # Ensure that the reference image is in grayscale
             reference_gray = cv2.cvtColor(reference_image, cv2.COLOR_BGR2GRAY)
 
             # Resize the reference image to match the size of the detected face
@@ -49,9 +47,7 @@ def facial_recognition(frame):
 def main():
     # Open the camera
     cap = cv2.VideoCapture(0)
-
-    # Define the duration for running the facial recognition (in seconds)
-    duration = 6  # Run for 5 seconds
+    duration = 3
 
     # Capture the start time
     start_time = time.time()

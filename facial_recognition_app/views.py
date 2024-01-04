@@ -1,4 +1,4 @@
-# Assuming the main function is in a file called "realtime_facial_recognition.py"
+
 from django.http import JsonResponse
 from realtime_facial_recognition import main  
 
@@ -12,7 +12,6 @@ def facial_recognition_view(request):
             "results": results
         }
 
-        # Return the JSON response
         return JsonResponse(response_data)
     else:
         # Handle unsupported request methods (e.g., POST, PUT, etc.)
