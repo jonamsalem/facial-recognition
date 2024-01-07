@@ -23,6 +23,7 @@ def facial_recognition(frame):
         'images/test.jpg': 'Test'
     }
 
+
     # Load the pre-trained Haar cascade classifier for face detection
     face_classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
