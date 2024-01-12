@@ -2,13 +2,10 @@
 # Facial Recognition Server
 
 ## Overview
-The Facial Recognition Server allows users to authenticate via OpenCV's facial ID library and alerts admins upon login via email.
-
-## Project Status
-This project is in need of refactoring.
+ Facial Recognition software that allows users to authenticate via OpenCV's facial ID library and alerts admins upon login via email.
 
 ## To-Do List
-- Migrate to MongoDB
+- Migrate to MongoDB rather than store images in directory
 - Host on AWS
 - Implement JWT tokens for authentication after face recognition
 - Create an endpoint that fetches something fun (e.g., Goggins' quotes LOL)
