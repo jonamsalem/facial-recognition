@@ -26,3 +26,9 @@ This project is in need of refactoring.
 **SMTP_PASSWORD**: examplepassword
 
 *Note: To create an `SMTP_PASSWORD`, go to your Gmail account, navigate to Security, enable 2-Step Verification, and generate an App password.*
+
+5. **Run the Django server and call the endpoints:**
+   ```bash
+   python manage.py runserver
+    curl http://localhost:8000/api/start-facial-recognition/
+    curl -X POST http://localhost:8000/api/start-facial-recognition/
