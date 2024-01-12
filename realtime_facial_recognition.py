@@ -75,32 +75,59 @@ def send_email_with_attachment(subject, body, attachment_path):
         connection.login(user=smtp_username, password=smtp_password)
         connection.sendmail(smtp_username, smtp_username, msg.as_string())
 
-def main():
-    # Open the camera
-    cap = cv2.VideoCapture(0)
-    duration = 3
-    start_time = time.time()
+def main(method):
+    if method == 'GET':
+        # Open the camera
+        cap = cv2.VideoCapture(0)
+        duration = 3
+        start_time = time.time()
 
-    # Loop to continuously capture frames and perform facial recognition
-    while time.time() - start_time < duration:
-        # Capture a frame from the camera
-        ret, frame = cap.read()
+        # Loop to continuously capture frames and perform facial recognition
+        while time.time() - start_time < duration:
+            # Capture a frame from the camera
+            ret, frame = cap.read()
 
-        # Perform facial recognition on the captured frame
-        success, message, matched_face = facial_recognition(frame)
+            # Perform facial recognition on the captured frame
+            success, message, matched_face = facial_recognition(frame)
 
-        # If a match is found, send an email
-        if success:
-            # Save the matched face as a temporary image file
-            _, temp_image_path = tempfile.mkstemp(suffix='.png')
-            cv2.imwrite(temp_image_path, matched_face)
+            # If a match is found, send an email
+            if success:
+                # Save the matched face as a temporary image file
+                _, temp_image_path = tempfile.mkstemp(suffix='.png')
+                cv2.imwrite(temp_image_path, matched_face)
 
-            # Send the email with the matched face as an attachment
-            send_email_with_attachment('Facial Recognition App', f'Face recognized: {message}', temp_image_path)
-            os.remove(temp_image_path)
-            return [(success, message)]
+                # Send the email with the matched face as an attachment
+                send_email_with_attachment('Facial Recognition App', f'Face recognized: {message}', temp_image_path)
+                os.remove(temp_image_path)
+                return (success, message)
 
-    return [(False, "No match found")]
+        return (False, "No match found")
+    elif method == 'POST':
+        cap = cv2.VideoCapture(0)
+        duration = 3
+        start_time = time.time()
 
+        # Loop to continuously capture frames and perform facial recognition
+        while time.time() - start_time < duration:
+            ret, frame = cap.read()
+
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+
+        faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+        cap.release()
+        # Check if a face is detected
+        if len(faces) > 0:
+            x, y, w, h = faces[0]
+            cropped_frame = frame[y:y+h, x:x+w]
+
+            # Save the cropped frame as an image under the "images" directory
+            image_filename = f"captured_face_{int(time.time())}.png"
+            image_path = os.path.join("images", image_filename)
+            cv2.imwrite(image_path, cropped_frame)
+            return (True, "face detected and saved")
+        else: 
+            return (False, "no face detected ")
+        
 if __name__ == "__main__":
     main()
