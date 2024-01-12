@@ -1,4 +1,3 @@
-THIS NEEDS REFACTORING
 
 # Facial Recognition Server
 
@@ -21,9 +20,9 @@ This project is in need of refactoring.
 3. **Create an `images` directory under the root directory and populate it with clear profile photos (you can first call the POST request and then use those images).**
 4. **Create a `.env` file that consists of the SMTP information for email notifications:**
 
-SMTP_SERVER=smtp.gmail.com
-SMTP_PORT=...
-SMTP_USERNAME=example@gmail.com
-SMTP_PASSWORD=examplepassword
+**SMTP_SERVER**: smtp.gmail.com  
+**SMTP_PORT**: ...  
+**SMTP_USERNAME**: example@gmail.com  
+**SMTP_PASSWORD**: examplepassword
 
 *Note: To create an `SMTP_PASSWORD`, go to your Gmail account, navigate to Security, enable 2-Step Verification, and generate an App password.*
