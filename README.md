@@ -1,4 +1,9 @@
-  THIS NEEDS REFACTORING
+THIS NEEDS REFACTORING
+
+TODO: migrate to mongoDB, host on aws. 
+Implement JWT tokens for authentication after face recognized. 
+Create endpoint that fetches something fun (goggin's quotes LOL)
+
 Facial-recognition server allows users to autneticate via openCV's facial ID library and alerts admins upon login via email.
 To run locally:
 1. Install python3 and Django
