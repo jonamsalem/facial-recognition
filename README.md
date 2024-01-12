@@ -1,3 +1,4 @@
+  THIS NEEDS REFACTORING
 Facial-recognition server allows users to autneticate via openCV's facial ID library and alerts admins upon login via email.
 To run locally:
 1. Install python3 and Django
