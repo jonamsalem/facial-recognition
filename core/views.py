@@ -8,13 +8,18 @@ from django.views.decorators.csrf import csrf_exempt
 def facial_recognition_view(request):
     if request.method == 'GET':
         results = main(request.method)
-        response_data = {
-            "results": results
-        }
         if results[0] == False:
             # If the first result is False, return 400 Bad Request
-            return JsonResponse({"error": "No match found"}, status=400)
-        return JsonResponse(response_data)
+            response = {
+                "result": "No match found"
+            }
+            return JsonResponse(response, status=400)
+
+        # If the first result is not False, return the actual results
+        response = {
+            "result": results[1]
+        }
+        return JsonResponse(response)
     if request.method == 'POST':
         # Call the main function to start real-time facial recognition
         results = main(request.method)
@@ -24,9 +29,14 @@ def facial_recognition_view(request):
             "results": results
         }
         if results[0] == False:
-            # If the first result is False, return 400 Bad Request
-            return JsonResponse({"error": "No match found"}, status=400)
-        return JsonResponse(response_data)
+            response = {
+                "result": "No face detected"
+            }
+            return JsonResponse(response, status=400)
+        response = {
+            "result": results[1]
+        }
+        return JsonResponse(response)
     else:
         # Handle unsupported request methods (e.g., POST, PUT, etc.)
         return JsonResponse({"error": "Unsupported request method"}, status=400)

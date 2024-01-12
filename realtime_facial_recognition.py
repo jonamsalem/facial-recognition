@@ -17,15 +17,17 @@ smtp_username = os.getenv('SMTP_USERNAME')
 smtp_password = os.getenv('SMTP_PASSWORD')
 
 def facial_recognition(frame):
+    images_directory = 'images/'
     # Dictionary mapping reference images to their names
-    reference_images = {
-        'images/jonathan.png': 'Jonathan',
-        'images/test.jpg': 'Test'
-    }
+    image_files = [f for f in os.listdir(images_directory) if os.path.isfile(os.path.join(images_directory, f))]
 
-
-    # Load the pre-trained Haar cascade classifier for face detection
-    face_classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+    # Create the reference_images dictionary dynamically
+    reference_images = {}
+    for filename in image_files:
+        # Add the image file to the dictionary with its name (without extension) as the key
+        reference_images[os.path.join(images_directory, filename)] = os.path.splitext(filename)[0]  
+        # Load the pre-trained Haar cascade classifier for face detection
+        face_classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
     # Perform facial recognition on the frame
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -104,7 +106,7 @@ def main(method):
         return (False, "No match found")
     elif method == 'POST':
         cap = cv2.VideoCapture(0)
-        duration = 3
+        duration = 1.5
         start_time = time.time()
 
         # Loop to continuously capture frames and perform facial recognition
@@ -114,7 +116,7 @@ def main(method):
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
-        faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+        faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(100, 100), flags=cv2.CASCADE_SCALE_IMAGE)
         cap.release()
         # Check if a face is detected
         if len(faces) > 0:
