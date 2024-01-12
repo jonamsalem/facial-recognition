@@ -18,7 +18,7 @@ This project is in need of refactoring.
 1. **Install Python 3 and Django.**
 2. **Clone the repository.**
 3. **Create an `images` directory under the root directory and populate it with clear profile photos (you can first call the POST request and then use those images).**
-4. **Create a `.env` file that consists of the SMTP information for email notifications:**
+4. **Populate the `.env` file to consist of the SMTP information for email notifications:**
 
 **SMTP_SERVER**: smtp.gmail.com  
 **SMTP_PORT**: ...  
