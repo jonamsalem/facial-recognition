@@ -18,7 +18,7 @@
 4. **Populate the `.env` file to consist of the SMTP information for email notifications:**
 
 **SMTP_SERVER**: smtp.gmail.com  
-**SMTP_PORT**: ...  
+**SMTP_PORT**: 587 
 **SMTP_USERNAME**: example@gmail.com  
 **SMTP_PASSWORD**: examplepassword
 
