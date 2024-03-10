@@ -4,12 +4,6 @@
 ## Overview
  Facial Recognition software that allows users to authenticate via OpenCV's facial ID library and alerts admins upon login via email.
 
-## To-Do List
-- Migrate to MongoDB rather than store images in directory
-- Host on AWS
-- Implement JWT tokens for authentication after face recognition
-- Create an endpoint that fetches something fun (e.g., Goggins' quotes LOL)
-
 ## Getting Started
 ### Running Locally
 1. **Install Python 3 and Django.**
